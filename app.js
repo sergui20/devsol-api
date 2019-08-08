@@ -52,6 +52,10 @@ app.use('/', userRoutes)
 const apiRoutes = require('./routes/api');
 app.use('/api', apiRoutes)
 
+app.use((req, res, next) => {
+    res.sendFile(__dirname, '/public/index.html')
+})
+
 server.listen(process.env.PORT, () => {
     console.log('Server listening on port 8080')
 });
