@@ -245,8 +245,10 @@ router.post('/friend/remove/:id', async (req, res, next) => {
     const friendID = req.params.id;
     console.log('get the friend id', friendID)
     try {
-        await User.findByIdAndUpdate(req.user._id, {$pull: {'friends.outcomingRequests': friendID}, $pull: {'friends.friendsList': friendID}});
-        await User.findByIdAndUpdate(friendID, {$pull: {'friends.incomingRequests': req.user._id}, $pull: {'friends.friendsList': req.user._id}});
+        await User.findByIdAndUpdate(req.user._id, {$pull: {'friends.outcomingRequests': friendID}});
+        await User.findByIdAndUpdate(req.user._id, {$pull: {'friends.friendsList': friendID}});
+        await User.findByIdAndUpdate(friendID, {$pull: {'friends.incomingRequests': req.user._id}});
+        await User.findByIdAndUpdate(friendID, {$pull: {'friends.friendsList': req.user._id}});
 
 
         // await User.findByIdAndUpdate(req.user._id, {$pull: {'friends.friendsList': friendID}});
