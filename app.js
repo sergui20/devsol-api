@@ -11,7 +11,7 @@ const passport = require('passport');
 const cors = require('cors');
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/devsol', { useNewUrlParser: true, useFindAndModify: false })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false })
     .then(() => {
         console.log('Connected to mongo')
     })
