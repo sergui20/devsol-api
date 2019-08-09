@@ -24,7 +24,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3001', /*'https://blah.herokuapp.com'*/]
+    origin: ['http://localhost:3000', 'https://devsol-api.herokuapp.com']
 }));
 app.use(session({
     secret: 'YeiDevSol',
