@@ -61,7 +61,7 @@ router.get('/posts/feed', async (req, res, next) => {
         // const posts = await Post.find({'owner': user.friends.friendsList})
         // console.log('pooosts', posts)
 
-        const posts = await Post.find().populate({path: 'answers', populate: {path: 'owner'}}).populate('owner')
+        const posts = await Post.find().sort({createdAt: -1}).populate({path: 'answers', populate: {path: 'owner'}}).populate('owner')
         console.log(posts)
         return res.status(200).json({
             ok: true,

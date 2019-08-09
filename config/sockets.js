@@ -19,9 +19,17 @@ io.on('connection', (client) => {
     })
 
     client.on('newFriendRequest', (users) => {
-        const newNotifications = notifications.addNotification('friend', users.user._id, users.friend._id)
+        const newNotifications = notifications.addNotification('friend', users.user._id, users.friendID)
         // console.log(newNotifications)
         io.emit('friendNotification', newNotifications)
+    })
+
+    client.on('acceptFriendRequest', (users) => {
+        const newNotifications = notifications.removeNotification(users.user._id, users.friend._id)
+        io.emit('friendNotification', newNotifications)
+
+        const activeUsers = onlineUsers.getAllUsers()
+        io.emit('loginEvent', activeUsers)
     })
 
     client.on('removedFriendRequest', (users) => {
