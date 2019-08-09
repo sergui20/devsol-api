@@ -52,7 +52,7 @@ app.use('/', userRoutes)
 const apiRoutes = require('./routes/api');
 app.use('/api', apiRoutes)
 
-app.use((req, res, next) => {
+app.get((req, res, next) => {
     res.sendFile(__dirname, '/public/index.html')
 })
 
